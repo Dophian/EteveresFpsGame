@@ -3,7 +3,20 @@ using UnityEngine;
 namespace FPSGame
 {
     public class PlayerControl : MonoBehaviour
+
     {
+
+        // 열거형.
+
+        public enum State
+        {
+            Idle,
+            Move
+        }
+
+        // 플레이어의 상태를 나타내는 변수.
+        [SerializeField] private State currentState = State.Idle;
+
         // 이동 속도.
         [SerializeField] private float moveSpeed = 5f;
 
@@ -35,13 +48,20 @@ namespace FPSGame
             // 애니메이션 설정.
             if (horizontal == 0f && vertical == 0f)
             {
+                // 상태 설정.
+                currentState = State.Idle;
+
+
                 // 입력이 없음.
-                refAnimator.SetInteger("State", 0);
+                refAnimator.SetInteger("State", (int)currentState);
             }
             else
             {
+                // 상태 설정.
+                currentState = State.Move;
+
                 // 입력이 있음.
-                refAnimator.SetInteger("State", 1);
+                refAnimator.SetInteger("State", (int)currentState);
             }
 
             // 이동.

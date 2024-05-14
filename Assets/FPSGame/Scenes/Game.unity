@@ -405,12 +405,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2113908, y: 0.0049962196, z: -0.0010754891, w: 0.9773883}
-  m_LocalPosition: {x: -0.05787389, y: 3.0843174, z: -3.4379582}
+  m_LocalRotation: {x: 0.073380284, y: -0.03827582, z: 0.0028231782, w: 0.9965653}
+  m_LocalPosition: {x: 0.7002495, y: 2.0435562, z: -1.2063731}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1221110393}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963902593
 GameObject:
@@ -457,7 +457,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143910a515d94b94d94fddb85b53f967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   moveSpeed: 5
+  refAnimator: {fileID: 0}
+--- !u!1 &1221110391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221110393}
+  - component: {fileID: 1221110392}
+  m_Layer: 0
+  m_Name: CameraRig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1221110392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221110391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230e34ccad5f8164e8c3b9de38b85f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 963902594}
+  damping: 5
+--- !u!4 &1221110393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221110391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 963194228}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1575101428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,7 +577,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 963902594}
   - {fileID: 547063201}
+  - {fileID: 1221110393}
