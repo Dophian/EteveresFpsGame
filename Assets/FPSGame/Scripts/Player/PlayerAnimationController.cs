@@ -20,7 +20,7 @@ namespace FPSGame
             horizontal = horizontal > 0f ? 1f : horizontal < 0f ? -1f : 0f;
 
             // 파라미터 설정
-            animator.SetFloat("Horixontal", horizontal);
+            animator.SetFloat("Horizontal", horizontal);
         }
 
         // Animator에서 Vertical 파라미터를 설정하는 함수.
