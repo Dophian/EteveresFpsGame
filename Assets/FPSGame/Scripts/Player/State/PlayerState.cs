@@ -10,7 +10,10 @@ namespace FPSGame
         protected Transform refTransform;
 
         // 캐릭터 컨트롤러 컴포넌트 참조 변수.
-        [SerializeField] private CharacterController characterController;
+        [SerializeField] protected CharacterController characterController;
+
+        // 회전 속도.
+        [SerializeField] protected float rotationSpeed = 540f;
 
         // 상태 진입 함수.
         protected virtual void OnEnable()
@@ -31,7 +34,19 @@ namespace FPSGame
         // 상태 업데이트 함수.
         protected virtual void Update()
         {
+            // 캐릭터의 중력 적용.
+            Vector3 gravity = new Vector3(0f, -9.8f, 0f);
+            characterController.Move(gravity * Time.deltaTime);
 
+            // 좌우 캐릭터 회전 처리.
+            Vector3 rotation = new Vector3(
+                0f,
+                PlayerInputManager.Turn * rotationSpeed * Time.deltaTime,
+                0f
+            );
+
+            // 회전 적용.
+            refTransform.Rotate(rotation);
         }
 
         // 상태 종료 함수.

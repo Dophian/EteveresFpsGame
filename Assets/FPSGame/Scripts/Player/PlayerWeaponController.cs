@@ -17,5 +17,15 @@ namespace FPSGame
             // 무기 장착.
             weapon.LoadWeapon(weaponHolder);
         }
+
+        private void Update()
+        {
+            // 입력 확인 후 발사.
+            if (PlayerInputManager.IsFire)
+            {
+                // 발사 명령 전달.
+                weapon.Fire();
+            }
+        }
     }
 }
