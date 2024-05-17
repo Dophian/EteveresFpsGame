@@ -13,7 +13,18 @@ namespace FPSGame
         [SerializeField] protected CharacterController characterController;
 
         // 회전 속도.
-        [SerializeField] protected float rotationSpeed = 540f;
+        //[SerializeField] protected float rotationSpeed = 540f;
+
+        // 플레이어 데이터 ScriptableObject.
+        protected PlayerData data;
+
+        // 플레이어 데이터를 설정하는 함수.
+
+        public void SetData(PlayerData data)
+        {
+            // this 키워드는 나자신을 가리킴.
+            this.data = data;
+        }
 
         // 상태 진입 함수.
         protected virtual void OnEnable()
@@ -41,7 +52,7 @@ namespace FPSGame
             // 좌우 캐릭터 회전 처리.
             Vector3 rotation = new Vector3(
                 0f,
-                PlayerInputManager.Turn * rotationSpeed * Time.deltaTime,
+                PlayerInputManager.Turn * data.rotationSpeed * Time.deltaTime,
                 0f
             );
 

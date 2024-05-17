@@ -29,7 +29,7 @@ namespace FPSGame
 
             // 마우스 클릭 이벤트 값 저장.
             // 0: 왼쪽 버튼, 1:오른쪽 버튼, 2: 휠 버튼.
-            IsFire = Input.GetMouseButtonDown(0);
+            IsFire = Input.GetMouseButton(0);
         }
     }
 }

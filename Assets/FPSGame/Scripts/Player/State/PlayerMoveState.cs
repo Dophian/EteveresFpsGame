@@ -6,7 +6,7 @@ namespace FPSGame
     public class PlayerMoveState : PlayerState
     {
         // 이동 속도.
-        [SerializeField] private float moveSpeed = 5f;
+        //[SerializeField] private float moveSpeed = 5f;
 
         protected override void Update()
         {
@@ -22,7 +22,7 @@ namespace FPSGame
             //refTransform.position += direction.normalized * moveSpeed * Time.deltaTime;
 
             // 캐릭터 컨트롤러를 사용한 이동
-            characterController.Move(direction.normalized * moveSpeed * Time.deltaTime);
+            characterController.Move(direction.normalized * data.moveSpeed * Time.deltaTime);
         }
     }
 }
