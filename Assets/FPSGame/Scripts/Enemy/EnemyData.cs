@@ -4,7 +4,7 @@ using UnityEngine;
 namespace FPSGame
 {
     // 적 캐릭터가 사용할 데이터 스크립트.
-    public class EnrmyData : MonoBehaviour
+    public class EnemyData : MonoBehaviour
     {
         // 변수.
         [SerializeField] private float attackDistance = 5f;           // 공격 가능 거리(단위 미터).

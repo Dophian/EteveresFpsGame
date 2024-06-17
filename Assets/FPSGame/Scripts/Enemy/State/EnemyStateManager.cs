@@ -12,6 +12,7 @@ namespace FPSGame
         {
             Idle,
             Patrol,
+            Dead,
             None
         }
 
@@ -22,7 +23,7 @@ namespace FPSGame
         [SerializeField] private EnemyState[] states;
 
         // 적 캐릭터 데이터 변수.
-        [SerializeField] private EnrmyData data;
+        [SerializeField] private EnemyData data;
 
         // 적 캐릭터의 상태가 변경되면 발행되는 이벤트.
         [SerializeField] private UnityEvent<State> OnEnemyStateChanged;
@@ -55,7 +56,7 @@ namespace FPSGame
         public void SetState(State newState)
         {
             // 예외처리 (변경하려는 상태가 현재 상태와 같은지 확인).
-            if (state == newState)
+            if (state == newState || state == State.Dead)
             {
                 return;
             }
@@ -86,6 +87,24 @@ namespace FPSGame
             Agent.speed = data.PatrolSpeed;
             Agent.isStopped = false;
             Agent.updateRotation = true;
+        }
+
+        // 에이전트를 정지시키는 메세지.
+        public void StopAgent()
+        {
+            Agent.isStopped = true;
+            Agent.velocity = Vector3.zero;
+            Agent.updateRotation = false;
+        }
+
+        // 죽었을 때 실행될 메세지(공개 메소드).
+        public void OnEnemyDead()
+        {
+            // 상태를 Dead로 변경.
+            SetState(State.Dead);
+
+            // 내미 베시 에이전트 정지.
+            StopAgent();
         }
     }
 }

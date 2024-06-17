@@ -11,13 +11,13 @@ namespace FPSGame
 
         // 적 캐릭터 데이터 참조 변수.
         // 누군가 이 값을 설정해줘야 함 → 상태 관리자에서 전달해 줌.
-        protected EnrmyData data;
+        protected EnemyData data;
 
         // 트랜스폼 참조 변수.
         protected Transform refTransform;
 
         // 데이터 설정 함수.
-        public void SetData(EnrmyData data)
+        public void SetData(EnemyData data)
         {
             this.data = data;
         }
