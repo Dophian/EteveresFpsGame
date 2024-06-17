@@ -689,13 +689,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08958128, y: 0.08056495, z: -0.0073082056, w: -0.99268883}
-  m_LocalPosition: {x: 0.95465535, y: 2.1027498, z: -1.0072155}
+  m_LocalRotation: {x: 0.04348068, y: -0.009221719, z: -0.0011277812, w: 0.9990111}
+  m_LocalPosition: {x: 0.8129454, y: 2.1297412, z: -1.362442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1221110393}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.312, y: -10.296, z: -0.178}
 --- !u!1 &963902593
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +748,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1575101430}
+  cameraRig: {fileID: 1221110392}
+  rotationOffset: 0.5
 --- !u!114 &963902596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,8 +763,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
-  rotationSpeed: 540
-  moveSpeed: 5
 --- !u!114 &963902597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,7 +776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
-  rotationSpeed: 540
 --- !u!114 &963902598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,11 +788,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae6c249139732e4b96e5f28b03da574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 2
   states:
   - {fileID: 963902597}
   - {fileID: 963902596}
   animationController: {fileID: 963902595}
+  data: {fileID: 11400000, guid: b0daa2aa317ce6d439f438333f5f66c3, type: 2}
 --- !u!143 &963902599
 CharacterController:
   m_ObjectHideFlags: 0
@@ -852,7 +852,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 963902594}
   damping: 5
-  rotationdamping: 5
+  rotationdamping: 4.9
+  cameraTransform: {fileID: 963194228}
+  minAngle: -30
+  maxAngle: 40
+  xRotation: 0
 --- !u!4 &1221110393
 Transform:
   m_ObjectHideFlags: 0
@@ -1052,6 +1056,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e249585ea0e47b04dbeebc6a48ca0aea, type: 2}
+    - target: {fileID: 5866666021909216657, guid: e46f6e42384721a488f4af0f8bf7fcea, type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1136,6 +1144,26 @@ MonoBehaviour:
   cartridgeEjectEffect: {fileID: 1300892458}
   muzzleFlashEffect: {fileID: 2014264200}
   cameraShake: {fileID: 1221110394}
+  data: {fileID: 11400000, guid: b0daa2aa317ce6d439f438333f5f66c3, type: 2}
+  currentAmmo: 0
+  animationController: {fileID: 963902595}
+  reloadWeaponClip: {fileID: 8300000, guid: 38a9d653cc8eb59428cb36b964cac074, type: 3}
+  fireRate: 0.1
+  OnReloadEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 963902595}
+        m_TargetAssemblyTypeName: FPSGame.PlayerAnimationController, Assembly-CSharp
+        m_MethodName: OnReload
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1702868990
 Transform:
   m_ObjectHideFlags: 0

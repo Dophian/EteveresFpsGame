@@ -10,7 +10,18 @@ namespace FPSGame
 
         private void OnCollisionEnter(Collision collision)
         {
+            // 충돌한 물체가 Enemy 태그인 경우의 처리.
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                // 탄약 삭제.
+                Destroy(gameObject);
+                return;
+            }
+
             // 충돌한 물체의 레이어를 확인. Wall이면 탄흔 표시.
+
+            //Debug.Log($"OnCollisionEnter: {collision,gameObject.layer}");
+
             if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
                 // 충돌 지점 받아오기.
