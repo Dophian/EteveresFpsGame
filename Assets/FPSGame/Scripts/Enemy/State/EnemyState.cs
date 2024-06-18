@@ -46,5 +46,22 @@ namespace FPSGame
         {
             
         }
+
+        // 적 캐릭터가 공격할 때 사용할 회전 메소드.
+        protected void UpdateRotation(Vector3 target, float damping)
+        {
+            if (target != Vector3.zero)
+            {
+                // 회전 구하기.
+                Quaternion rotation = Quaternion.LookRotation(target);
+
+                // Lerp를 활용해서 회전 적용.
+                refTransform.rotation = Quaternion.Slerp(
+                    refTransform.rotation,
+                    rotation,
+                    damping * Time.deltaTime
+                );
+            }
+        }
     }
 }

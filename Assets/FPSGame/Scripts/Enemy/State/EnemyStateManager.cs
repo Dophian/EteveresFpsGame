@@ -12,6 +12,8 @@ namespace FPSGame
         {
             Idle,
             Patrol,
+            Trace,
+            Attack,
             Dead,
             None
         }
@@ -31,6 +33,12 @@ namespace FPSGame
         // 내비 메시 에이전트 프로퍼티.
         public NavMeshAgent Agent { get; private set; }
 
+        // 플레이어 정보.
+        public Transform PlayerTransform { get; private set; }
+
+        // 플레이어의 생존 여부.
+        public bool IsPlayerDead { get; private set; }
+
         private void Awake()
         {
             // 내비 메시 에이전트 초기화.
@@ -42,11 +50,14 @@ namespace FPSGame
             // Waypoint 게임 오브젝트 검색 후 트랜스폼 전달.
             data.Initialize(GameObject.FindGameObjectWithTag("WaypointGroup").transform);
 
-            // 상태를 ㅅ누회하면서 데이터 설정.
+            // 상태를 순회하면서 데이터 설정.
             foreach (var state in states)
             {
                 state.SetData(data);
             }
+
+            // 플레이어 정보 초기화.
+            PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
             // 처음 시작할 때 Idle 상태로 시작.
             SetState(State.Idle);
@@ -84,7 +95,7 @@ namespace FPSGame
         public void SetAgentDestination(Vector3 destination, float moveSpeed)
         {
             Agent.SetDestination(destination);
-            Agent.speed = data.PatrolSpeed;
+            Agent.speed = moveSpeed;
             Agent.isStopped = false;
             Agent.updateRotation = true;
         }
@@ -104,6 +115,20 @@ namespace FPSGame
             SetState(State.Dead);
 
             // 내미 베시 에이전트 정지.
+            StopAgent();
+        }
+
+        // 적 캐릭터의 죽음 여부.
+        public bool IsDead
+        {
+            get { return state == State.Dead;}
+        }
+
+        // 플레이어가 죽었을 때 실행될 이벤트 리스너 메소드.
+        public void OnPlayerDead()
+        {
+            IsPlayerDead = true;
+            SetState(State.Idle);
             StopAgent();
         }
     }

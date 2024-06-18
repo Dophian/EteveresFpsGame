@@ -26,7 +26,7 @@ namespace FPSGame
         public float FireRate { get { return fireRate; } }
 
         [SerializeField] private int maxBullet = 3;                   // 최대 탄약 수.
-        public float MaxBullet { get { return maxBullet; } }
+        public int MaxBullet { get { return maxBullet; } }
 
         [SerializeField] private float maxHP = 100f;                  // 체력
         public float MaxHP { get { return maxHP; } }

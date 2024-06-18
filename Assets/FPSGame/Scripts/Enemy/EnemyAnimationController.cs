@@ -14,5 +14,16 @@ namespace FPSGame
         {
             refAnimator.SetInteger("State", (int)state);
         }
+
+        // 이벤트 리스너 메소드.
+        public void OnFire()
+        {
+            refAnimator.SetTrigger("Fire");
+        }
+
+        public void OnReload()
+        {
+            refAnimator.SetTrigger("Reload");
+        }
     }
 }
