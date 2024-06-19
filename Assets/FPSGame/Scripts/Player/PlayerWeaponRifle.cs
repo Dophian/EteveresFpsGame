@@ -41,6 +41,9 @@ namespace FPSGame
         // 재장전 이벤트.
         public UnityEvent OnReloadEvent;
 
+        // 탄약의 수가 변경될 때 발생하는 이벤트.
+        [SerializeField] private UnityEvent<int, int> OnAmmoChanged;
+
         // 발사가 가능한지 확인하는 프로퍼티.
         private bool CanFire { get { return currentAmmo > 0 && Time.time > nextFireTime; } }
 
@@ -50,6 +53,9 @@ namespace FPSGame
 
             // 시작할 때 탄약 가득 채우기.
             currentAmmo = data.maxAmmo;
+
+            // 이벤트 발행.
+            OnAmmoChanged?.Invoke(currentAmmo, data.maxAmmo);
         }
 
         public override void Fire()
@@ -67,6 +73,9 @@ namespace FPSGame
 
             // 탄약 개수 감소 처리.
             --currentAmmo;
+
+            // 이벤트 발행.
+            OnAmmoChanged?.Invoke(currentAmmo, data.maxAmmo);
 
             // List / Dictionary.
 
@@ -115,6 +124,9 @@ namespace FPSGame
         {
             // 탄약 채우기.
             currentAmmo = data.maxAmmo;
+
+            // 이벤트 발행.
+            OnAmmoChanged?.Invoke(currentAmmo, data.maxAmmo);
         }
     }
 }

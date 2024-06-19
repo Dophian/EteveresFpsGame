@@ -423,7 +423,7 @@ MonoBehaviour:
   audioPlayer: {fileID: 0}
   fireClip: {fileID: 8300000, guid: b80f6116fade9e74280684017201c6e1, type: 3}
   reloadClip: {fileID: 8300000, guid: 38a9d653cc8eb59428cb36b964cac074, type: 3}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 2280029501260130529, guid: 19b754626e5d9214cb8821dcccca9d99, type: 3}
   firePosition: {fileID: 7983218359811869593}
   muzzleFlashEffect: {fileID: 2756140606709430413}
 --- !u!1 &8441872138895847309

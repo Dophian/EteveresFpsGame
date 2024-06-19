@@ -10,6 +10,7 @@ namespace FPSGame
         {
             Idle,
             Move,
+            Dead,
             None
         }
 
@@ -24,6 +25,9 @@ namespace FPSGame
 
         // 플레이어 데이터.
         [SerializeField] private PlayerData data;
+
+        // 플레이어가 죽었는지를 알려주는 프로퍼티.
+        public bool IsPlayerDead { get { return currentState == State.Dead; } }
 
         private void OnEnable()
         {
@@ -41,7 +45,7 @@ namespace FPSGame
         public void SetState(State newState)
         {
             // 예외 처리.
-            if (currentState == newState)
+            if (currentState == newState || currentState == State.Dead)
             {
                 return;
             }
@@ -81,5 +85,12 @@ namespace FPSGame
                 animationController.SetVerticalParameter(PlayerInputManager.Vertical);
             }
         }
+
+        // 플레이어가 죽으면 실행되는 메소드(메세지).
+        public void OnPlayerDead()
+        {
+            SetState(State.Dead);
+        }
+
     }
 }

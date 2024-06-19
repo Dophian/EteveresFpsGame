@@ -17,8 +17,17 @@ namespace FPSGame
         // 마우스 클릭 이벤트 값.
         public static bool IsFire { get; private set; } = false;
 
+        // 게임 오버.
+        private bool isGameOver = false;
+
         private void Update()
         {
+            // 게임오버인 경우, 업데이트 안함
+            if (isGameOver)
+            {
+                return;
+            }
+
             // 방향키 입력 저장.
             Horizontal = Input.GetAxis("Horizontal");
             Vertical = Input.GetAxis("Vertical");
@@ -31,5 +40,19 @@ namespace FPSGame
             // 0: 왼쪽 버튼, 1:오른쪽 버튼, 2: 휠 버튼.
             IsFire = Input.GetMouseButton(0);
         }
+
+        // 플레이어가 죽으면 실행될 리스너 메소드.
+        public void OnPlayerDead()
+        {
+            isGameOver = true;
+
+            // 입력 값 초기화.
+            Horizontal = 0f;
+            Vertical = 0f;
+            Turn = 0f;
+            Look = 0f;
+            IsFire = false;
+        }
+
     }
 }

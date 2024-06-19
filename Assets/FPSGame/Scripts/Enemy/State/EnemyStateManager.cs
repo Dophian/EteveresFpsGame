@@ -59,6 +59,9 @@ namespace FPSGame
             // 플레이어 정보 초기화.
             PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
+            // 플레이어가 죽었을 때 발행되는 이벤트에 함수 등록.
+            FindFirstObjectByType<PlayerDamageController>().SubscribeOnPlayerDead(OnPlayerDead);
+
             // 처음 시작할 때 Idle 상태로 시작.
             SetState(State.Idle);
         }
