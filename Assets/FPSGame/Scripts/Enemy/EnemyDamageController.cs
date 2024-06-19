@@ -51,6 +51,10 @@ namespace FPSGame
                     // 죽었다는 이벤트 발행.
                     OnEnemyDead?.Invoke();
 
+                    // 점수 획득.
+                    GameManager.Instance.AddScore();
+                    //GameMAnager.Get().AddScor();
+
                     //if (OnEnemyDead != null)
                     //{
                     //    OnEnemyDead.Invoke();
