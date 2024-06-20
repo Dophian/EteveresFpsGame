@@ -15,6 +15,9 @@ namespace FPSGame
         // 적 캐릭터가 죽을 때 발행하는 이벤트.
         [SerializeField] private UnityEvent OnEnemyDead;
 
+        // 적 캐릭터가 대미지를 입어서 체력이 변경될 때 발행하는 이벤트.
+        [SerializeField] private UnityEvent<float, float> OnEnemyDamaged;
+
         // 충돌이 발생했을 때 비교할 탄약 태그 값.
         private const string bulletTag = "Bullet";
 
@@ -25,6 +28,9 @@ namespace FPSGame
         {
             // 체력 값 설정.
             hp = data.MaxHP;
+
+            // 체력 변동 이벤트 발행.
+            OnEnemyDamaged?.Invoke(hp, data.MaxHP);
         }
 
         // 다른 물체와 Collision 방식으로 충돌을 시작할 때
@@ -44,6 +50,9 @@ namespace FPSGame
                 hp -= collision.gameObject.GetComponent<BulletDamage>().Damage;
                 // 값 정리.
                 hp = hp < 0f ? 0f : hp;
+
+                // 체력 변동 이벤트 발행.
+                OnEnemyDamaged?.Invoke(hp, data.MaxHP);
 
                 // 죽음 판단.
                 if (hp == 0f)

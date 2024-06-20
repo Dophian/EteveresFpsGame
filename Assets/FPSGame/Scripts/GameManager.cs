@@ -8,6 +8,26 @@ namespace FPSGame
         // 필드.
         [SerializeField] private int score = 0;
         [SerializeField] private TMPro.TextMeshProUGUI scoreText;
+        [SerializeField] private TMPro.TextMeshProUGUI fpsText;
+
+        private void Update()
+        {
+            if (fpsText != null)
+            {
+                fpsText.text = $"FPS: {(int)(1.0f / Time.deltaTime)}";
+            }
+
+            // ESC키를 누르면 게임 종료.
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                // 게임 종료 명령어.
+                Application.Quit();
+#endif
+            }
+        }
 
         // 메세지.
         // 점수 획득 메세지(공개 메소드).

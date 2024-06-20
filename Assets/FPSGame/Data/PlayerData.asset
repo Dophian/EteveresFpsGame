@@ -15,4 +15,4 @@ MonoBehaviour:
   moveSpeed: 3
   rotationSpeed: 540
   maxHP: 100
-  maxAmmo: 20
+  maxAmmo: 40
